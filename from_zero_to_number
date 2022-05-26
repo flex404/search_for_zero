@@ -8,7 +8,7 @@ def valid(number):
         return True
     else:
         position = zero
-    for i in range(1, 10):
+    for i in range(1, len(number)+1):
         if swap(number, position):
             number[position] = i
             if valid(number):
@@ -17,17 +17,22 @@ def valid(number):
     return False
 
 
-def find_zero(number): 
+def find_zero(number):
     for i in range(len(number)):
         if number[i] == 0:
             return i
     return None
 
 
-def swap(number, n): # TODO
+def swap(number, n):  # TODO parameter n always returns 3
     for i in range(len(number)):
-        if number[i] != n and number[i] != i:
-            return True
+        if number[i] == 0:
+            for j in range(1, len(number)+1):
+                if j not in number:
+                    number[i] = j
+                    break
 
 
 valid(number)
+print(number)
+print(sorted(number))
